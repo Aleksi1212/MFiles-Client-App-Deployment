@@ -11,7 +11,7 @@ namespace MFClientAppDeploymentAutomation
 {
     internal class Configuration
     {
-        private readonly DirectoryInfo currentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
+        public DirectoryInfo currentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
         public string appFilePath
         {
             get { return Path.Combine(Environment.GetEnvironmentVariable("CLIENT_APP_BUILD_FOLDER"), $"{currentDirectory.Name}.zip"); }

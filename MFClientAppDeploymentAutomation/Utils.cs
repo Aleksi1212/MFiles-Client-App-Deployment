@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.IO.Compression;
 
 
 namespace MFClientAppDeploymentAutomation
@@ -30,6 +31,18 @@ namespace MFClientAppDeploymentAutomation
             }
 
             return dotenv["WORKING_ENV"] == "TEST";
+        }
+
+        public void Compress(string folderPath, string zipPath)
+        {
+            try
+            {
+                ZipFile.CreateFromDirectory(folderPath, zipPath);
+            }
+             catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
