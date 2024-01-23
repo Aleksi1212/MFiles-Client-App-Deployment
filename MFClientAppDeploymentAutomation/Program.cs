@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -16,15 +17,23 @@ namespace MFClientAppDeploymentAutomation
             AppConfiguration appConfig = new AppConfiguration();
             VaultConfiguration vaultConfig = new VaultConfiguration();
 
-            Utils utils = new Utils();
-            utils.Compress(appConfig.CurrentDirectory.FullName, appConfig.AppFilePath);
-
             MFilesServerApplicationClass server = new MFilesServerApplicationClass();
             TimeZoneInformationClass tzi = new TimeZoneInformationClass();
             tzi.LoadWithCurrentTimeZone();
 
             try
             {
+                // Check for appdef.xml file
+                string[] files = Directory.GetFiles(appConfig.CurrentDirectory.FullName);
+                if (!files.Contains<string>($"{appConfig.CurrentDirectory.FullName}\\appdef.xml"))
+                {
+                    throw new Exception("No appdef.xml file found");
+                }
+
+                // Zip folder containing project
+                Utils utils = new Utils();
+                utils.Compress(appConfig.CurrentDirectory.FullName, appConfig.AppFilePath);
+
                 // Connect to server
                 Console.WriteLine($"Connecting to {vaultConfig.VaultName} on {vaultConfig.NetworkAddress}");
                 server.ConnectAdministrativeEx(
