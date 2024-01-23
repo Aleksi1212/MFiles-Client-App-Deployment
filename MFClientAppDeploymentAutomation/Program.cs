@@ -53,17 +53,6 @@ namespace MFClientAppDeploymentAutomation
                 // Install application
                 Console.WriteLine("Installing application...");
                 vault.CustomApplicationManagementOperations.InstallCustomApplication(appConfig.AppFilePath);
-
-                Console.WriteLine("Restarting vault...");
-                server.VaultManagementOperations.TakeVaultOffline(vaultOnServer.GUID, true);
-                server.VaultManagementOperations.BringVaultOnline(vaultOnServer.GUID);
-                Thread.Sleep(1000);
-
-                vault = vaultOnServer.LogIn();
-                if (!vault.LoggedIn)
-                {
-                    throw new Exception("Application installed, but error logging back in");
-                }
                 Console.WriteLine("Application succesfully installed");
 
             }
