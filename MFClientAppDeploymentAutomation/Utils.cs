@@ -15,8 +15,10 @@ namespace MFClientAppDeploymentAutomation
         {
             Dictionary<string, string> dotenv = new Dictionary<string, string>();
 
-            var dotenvFile = File.ReadLines("C:\\Users\\A505471\\source\\repos\\MFClientAppDeploymentAutomation\\MFClientAppDeploymentAutomation\\.env");
-            foreach (var line in dotenvFile)
+            string dotenvPath = "C:\\Users\\A505471\\source\\repos\\MFClientAppDeploymentAutomation\\MFClientAppDeploymentAutomation\\.env";
+            IEnumerable<string> dotenvContent = File.ReadLines(dotenvPath);
+
+            foreach (string line in dotenvContent)
             {
                 int index = line.IndexOf('=');
                 string key = "";
@@ -38,10 +40,11 @@ namespace MFClientAppDeploymentAutomation
             try
             {
                 ZipFile.CreateFromDirectory(folderPath, zipPath);
+                Console.WriteLine("Folder zipped");
             }
              catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine($"Error zipping folder: {ex.Message}");
             }
         }
     }
