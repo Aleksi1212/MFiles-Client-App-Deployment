@@ -31,7 +31,7 @@ namespace MFClientAppDeploymentAutomation
                 }
                 dotenv[key] = value;
             }
-
+            
             return dotenv["WORKING_ENV"] == "TEST";
         }
 

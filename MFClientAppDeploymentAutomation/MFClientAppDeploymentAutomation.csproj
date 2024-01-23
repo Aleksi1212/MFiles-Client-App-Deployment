@@ -67,6 +67,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="test\appdef.xml" />
+    <Content Include="test\common.js" />
+    <Content Include="test\dashboards\changeHandler.html" />
+    <Content Include="test\file.txt" />
+    <Content Include="test\fileHandler.js" />
+    <Content Include="test\main.js" />
+    <Content Include="test\search.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Interop.MFilesAPI.24.1.8\build\Interop.MFilesAPI.targets" Condition="Exists('..\packages\Interop.MFilesAPI.24.1.8\build\Interop.MFilesAPI.targets')" />
