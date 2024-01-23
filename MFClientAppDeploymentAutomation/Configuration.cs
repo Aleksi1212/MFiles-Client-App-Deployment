@@ -1,11 +1,7 @@
 ﻿using MFilesAPI;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MFClientAppDeploymentAutomation
 {
@@ -18,7 +14,7 @@ namespace MFClientAppDeploymentAutomation
             get
             {
                 return testEnvironment
-                    ? new DirectoryInfo("C:\\Users\\A505471\\source\\repos\\MFClientAppDeploymentAutomation\\MFClientAppDeploymentAutomation\\test\\")
+                    ? new DirectoryInfo("C:\\Users\\A505471\\source\\repos\\MFClientAppDeploymentAutomation\\MFClientAppDeploymentAutomation\\test")
                     : new DirectoryInfo(Directory.GetCurrentDirectory());
             }
         }
