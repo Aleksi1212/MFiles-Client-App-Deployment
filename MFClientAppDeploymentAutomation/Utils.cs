@@ -32,7 +32,11 @@ namespace MFClientAppDeploymentAutomation
                 dotenv[key] = value;
             }
             
-            return dotenv["WORKING_ENV"] == "TEST";
+            if (dotenv.ContainsKey("WORKING_ENV"))
+            {
+                return dotenv["WORKING_ENV"] == "TEST";
+            }
+            return false;
         }
 
         public void Compress(string folderPath, string zipPath)
