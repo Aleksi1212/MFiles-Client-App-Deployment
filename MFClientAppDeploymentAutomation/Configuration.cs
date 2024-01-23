@@ -11,12 +11,12 @@ namespace MFClientAppDeploymentAutomation
 {
     internal class Configuration
     {
-        public DirectoryInfo currentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
-        public string appFilePath
+        public DirectoryInfo CurrentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
+        public string AppFilePath
         {
-            get { return Path.Combine(Environment.GetEnvironmentVariable("CLIENT_APP_BUILD_FOLDER"), $"{currentDirectory.Name}.zip"); }
+            get { return Path.Combine(Environment.GetEnvironmentVariable("CLIENT_APP_BUILD_FOLDER"), $"{CurrentDirectory.Name}.zip"); }
         }
-        public string appGuid
+        public string AppGuid
         {
             get
             {
@@ -24,7 +24,7 @@ namespace MFClientAppDeploymentAutomation
 
                 string appdefPath = testEnvironment
                     ? "C:\\Users\\A505471\\source\\repos\\MFClientAppDeploymentAutomation\\MFClientAppDeploymentAutomation\\test\\appdef.xml"
-                    : Path.Combine(currentDirectory.FullName, "appdef.xml");
+                    : Path.Combine(CurrentDirectory.FullName, "appdef.xml");
 
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(appdefPath);
@@ -32,17 +32,17 @@ namespace MFClientAppDeploymentAutomation
                 return xmlDoc.SelectSingleNode("//guid")?.InnerText;
             }
         }
-        public string vaultName = "Aleksin hiekkalaatikka (VAN02)";
+        public string VaultName = "Aleksin hiekkalaatikka (VAN02)";
         
-        public MFAuthType authType = MFAuthType.MFAuthTypeSpecificWindowsUser;
-        public string userName = "mfilestest";
-        public string password = Environment.GetEnvironmentVariable("VAN02PASSWORD");
-        public string domain = "dekrafinland.fi";
-        public string spn = "";
-        public string protocolSequence = "ncacn_ip_tcp";
-        public string networkAddress = "van02.dekra.fi";
-        public int endpoint = 2266;
-        public bool encryptedConnection = false;
-        public string localComputerName = "";
+        public MFAuthType AuthType = MFAuthType.MFAuthTypeSpecificWindowsUser;
+        public string UserName = "mfilestest";
+        public string Password = Environment.GetEnvironmentVariable("VAN02PASSWORD");
+        public string Dmain = "dekrafinland.fi";
+        public string Spn = "";
+        public string ProtocolSequence = "ncacn_ip_tcp";
+        public string NetworkAddress = "van02.dekra.fi";
+        public int Endpoint = 2266;
+        public bool EncryptedConnection = false;
+        public string LocalComputerName = "";
     }
 }

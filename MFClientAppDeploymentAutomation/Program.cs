@@ -15,7 +15,7 @@ namespace MFClientAppDeploymentAutomation
             Configuration config = new Configuration();
 
             Utils utils = new Utils();
-            utils.Compress(config.currentDirectory.FullName, config.appFilePath);
+            utils.Compress(config.CurrentDirectory.FullName, config.AppFilePath);
         }
     }
 }
