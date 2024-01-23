@@ -55,6 +55,7 @@ namespace MFClientAppDeploymentAutomation
                 vault.CustomApplicationManagementOperations.InstallCustomApplication(appConfig.AppFilePath);
                 Console.WriteLine("Application succesfully installed");
 
+                utils.DeleteZipped(appConfig.AppFilePath);
             }
             catch (Exception ex)
             {
