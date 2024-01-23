@@ -51,5 +51,13 @@ namespace MFClientAppDeploymentAutomation
                 Console.WriteLine($"Error zipping folder: {ex.Message}");
             }
         }
+
+        public void DeleteZipped(string zipPath)
+        {
+            if (File.Exists(zipPath))
+            {
+                File.Delete(zipPath);
+            }
+        }
     }
 }
