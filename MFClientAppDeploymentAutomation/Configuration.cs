@@ -8,6 +8,7 @@ namespace MFClientAppDeploymentAutomation
     internal class AppConfiguration
     {
         private readonly bool testEnvironment = new Utils().IsTest();
+        public readonly string VaultConfigFilePath = "C:\\Users\\A505471\\source\\repos\\deploymentConfig\\config.json";
 
         public DirectoryInfo CurrentDirectory
         {
@@ -40,16 +41,16 @@ namespace MFClientAppDeploymentAutomation
 
     internal class VaultConfiguration
     {
-        public readonly string VaultName = "Aleksin hiekkalaatikka (VAN02)";
-        public readonly MFAuthType AuthType = MFAuthType.MFAuthTypeSpecificWindowsUser;
-        public readonly string UserName = "mfilestest";
-        public readonly string Password = Environment.GetEnvironmentVariable("VAN02PASSWORD");
-        public readonly string Domain = "dekrafinland.fi";
-        public readonly string Spn = "";
-        public readonly string ProtocolSequence = "ncacn_ip_tcp";
-        public readonly string NetworkAddress = "van02.dekra.fi";
-        public readonly string Endpoint = "2266";
-        public readonly bool EncryptedConnection = false;
-        public readonly string LocalComputerName = "";
+        public string VaultName { get; set; }
+        public int AuthType { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string Domain { get; set; }
+        public string Spn { get; set; }
+        public string ProtocolSequence { get; set; }
+        public string NetworkAddress { get; set; }
+        public string Endpoint { get; set; }
+        public bool EncryptedConnection { get; set; }
+        public string LocalComputerName { get; set; }
     }
 }
