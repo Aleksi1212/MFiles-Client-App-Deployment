@@ -11,12 +11,13 @@ namespace MFClientAppDeploymentAutomation
 	{
 		static void Main(string[] args)
 		{
-			Utils utils = new Utils();
-			AppConfiguration appConfig = new AppConfiguration();
+			Configuration Config = new Configuration();
+			Utils Utils = new Utils();
+			Configuration.App appConfig = new Configuration.App();
 
 			if (args.Length == 0)
 			{
-				VaultConfiguration vaultConfig = utils.GetVaultConfig(appConfig.VaultConfigFilePath);
+				Configuration.Vault vaultConfig = Config.GetVaultConfig(appConfig.VaultConfigFilePath);
 
 				MFilesServerApplicationClass server = new MFilesServerApplicationClass();
 				TimeZoneInformationClass tzi = new TimeZoneInformationClass();
@@ -32,7 +33,7 @@ namespace MFClientAppDeploymentAutomation
 					}
 
 					// Zip folder containing project
-					utils.Compress(appConfig.CurrentDirectory.FullName, appConfig.AppFilePath);
+					Utils.Compress(appConfig.CurrentDirectory.FullName, appConfig.FilePath);
 
 					// Connect to server
 					Console.WriteLine($"Connecting to {vaultConfig.VaultName} on {vaultConfig.NetworkAddress}");
@@ -61,10 +62,10 @@ namespace MFClientAppDeploymentAutomation
 
 					// Install application
 					Console.WriteLine("Installing application...");
-					vault.CustomApplicationManagementOperations.InstallCustomApplication(appConfig.AppFilePath);
+					vault.CustomApplicationManagementOperations.InstallCustomApplication(appConfig.FilePath);
 					Console.WriteLine("Application succesfully installed");
 
-					utils.DeleteZipped(appConfig.AppFilePath);
+					Utils.DeleteZipped(appConfig.FilePath);
 				}
 				catch (Exception ex)
 				{
@@ -95,9 +96,9 @@ namespace MFClientAppDeploymentAutomation
 					{
 						bool isPath = new Regex("^([a-zA-Z]\\:)(\\\\[^\\\\/:*?<>\"|]*(?<![ ]))*(\\.[a-zA-Z]{2,6})$").IsMatch(flagValue);
 						if (isPath)
-							utils.SetVaultConfig(appConfig.VaultConfigFilePath, flagValue, "path");
+							Config.SetVaultConfig(appConfig.VaultConfigFilePath, flagValue, "path");
 						else
-							utils.SetVaultConfig(appConfig.VaultConfigFilePath, flagValue, "json");
+							Config.SetVaultConfig(appConfig.VaultConfigFilePath, flagValue, "json");
 						Console.WriteLine("Config updated");
 					}
 					else

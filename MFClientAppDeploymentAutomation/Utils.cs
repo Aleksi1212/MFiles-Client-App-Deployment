@@ -1,46 +1,12 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using System.Threading;
-
 
 namespace MFClientAppDeploymentAutomation
 {
     internal class Utils
     {
-
-        public VaultConfiguration GetVaultConfig(string path)
-        {
-            if (!File.Exists(path))
-            {
-                throw new Exception("No Config File Found");
-            }
-
-            StreamReader reader = new StreamReader(path);
-            string json = reader.ReadToEnd() ?? throw new Exception("No Config Data found");
-            VaultConfiguration vaultConfig = JsonConvert.DeserializeObject<VaultConfiguration>(json);
-
-            return vaultConfig;
-        }
-        public void SetVaultConfig(string destPath, string data, string type)
-        {
-            string jsonData = "";
-
-            if (type == "path")
-            {
-                VaultConfiguration newVaultConfig = this.GetVaultConfig(data);
-                jsonData = JsonConvert.SerializeObject(newVaultConfig, Formatting.Indented);
-            }
-            else if (type == "json")
-            {
-                VaultConfiguration jsonObj = JsonConvert.DeserializeObject<VaultConfiguration>(data);
-                jsonData = JsonConvert.SerializeObject(jsonObj, Formatting.Indented);
-            }
-            File.WriteAllText(destPath, jsonData);
-        }
-
         public bool IsTest()
         {
             Dictionary<string, string> dotenv = new Dictionary<string, string>();
